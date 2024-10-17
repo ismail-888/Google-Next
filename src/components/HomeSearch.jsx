@@ -22,7 +22,7 @@ const HomeSearch = () => {
       .then((res) => res.json())
       .then((data) => data[0]);
     if (!response) return;
-    router.push(`/search/web?searchTerms=${response}`);
+    router.push(`/search/web?searchTerm=${response}`);
     setRandomSearchLoading(false);
   };
 
