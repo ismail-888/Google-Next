@@ -1,7 +1,7 @@
 import HomeHeader from "@/components/HomeHeader";
 import HomeSearch from "@/components/HomeSearch";
 import Image from "next/image.js";
-
+import "./globals.css";
 const Home = () => {
   return (
     <>

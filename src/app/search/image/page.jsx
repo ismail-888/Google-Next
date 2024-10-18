@@ -2,10 +2,7 @@
 import ImageSearchResults from '@/components/ImageSearchResults';
 import Link from 'next/link';
 import { Suspense } from 'react';
-
-function Loading() {
-  return <div>Loading...</div>;
-}
+import Loading from './loading';
 
 export default async function ImageSearchPage({ searchParams }) {
   const startIndex = searchParams.start || '1';

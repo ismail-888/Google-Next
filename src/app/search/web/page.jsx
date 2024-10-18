@@ -1,11 +1,8 @@
-// search/image/page.js
+// search/web/page.js
 import WebSearchResults from '@/components/WebSearchResults';
 import Link from 'next/link';
 import { Suspense } from 'react';
-
-function Loading() {
-  return <div>Loading...</div>;
-}
+import Loading from './loading';
 
 export default async function WebSearchPage({ searchParams }) {
   const startIndex = searchParams.start || '1';
