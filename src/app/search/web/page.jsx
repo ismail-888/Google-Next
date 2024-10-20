@@ -1,14 +1,9 @@
-// search/web/page.js
-import WebSearchResults from '@/components/WebSearchResults';
+import WebSearchClient from '@/components/WebSearchClient';
 import Link from 'next/link';
-import { Suspense } from 'react';
-import Loading from './loading';
 
-export default async function WebSearchPage({ searchParams }) {
-  const startIndex = searchParams.start || '1';
-  await new Promise((resolve) => setTimeout(resolve, 1000));
+export default async function WebSearchPage() {
   const response = await fetch(
-    `https://www.googleapis.com/customsearch/v1?key=${process.env.API_KEY}&cx=${process.env.CONTEXT_KEY}&q=${searchParams.searchTerm}&start=${startIndex}`
+    `https://www.googleapis.com/customsearch/v1?key=${process.env.API_KEY}&cx=${process.env.CONTEXT_KEY}&q=yourQueryHere&start=1`
   );
 
   if (!response.ok) throw new Error('Something went wrong');
@@ -18,11 +13,9 @@ export default async function WebSearchPage({ searchParams }) {
   if (!results) {
     return (
       <div className="flex flex-col justify-center items-center pt-10">
-        <h1 className="text-3xl mb-4">
-          No results found for {searchParams.searchTerm}
-        </h1>
+        <h1 className="text-3xl mb-4">No results found</h1>
         <p className="text-lg">
-          Try searching the web or images for something else{' '}
+          Try searching the web{' '}
           <Link href="/" className="text-blue-500">
             Home
           </Link>
@@ -31,9 +24,5 @@ export default async function WebSearchPage({ searchParams }) {
     );
   }
 
-  return (
-    <Suspense fallback={<Loading />}>
-      <div>{results && <WebSearchResults results={data} />}</div>
-    </Suspense>
-  );
+  return <WebSearchClient results={results} />;
 }

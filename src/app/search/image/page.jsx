@@ -1,12 +1,9 @@
-// search/image/page.js
-import ImageSearchResults from '@/components/ImageSearchResults';
+// app/search/image/page.jsx
+import ImageSearchClient from '@/components/ImageSearchClient';
 import Link from 'next/link';
-import { Suspense } from 'react';
-import Loading from './loading';
 
 export default async function ImageSearchPage({ searchParams }) {
   const startIndex = searchParams.start || '1';
-  await new Promise((resolve) => setTimeout(resolve, 1000));
   const response = await fetch(
     `https://www.googleapis.com/customsearch/v1?key=${process.env.API_KEY}&cx=${process.env.CONTEXT_KEY}&q=${searchParams.searchTerm}&searchType=image&start=${startIndex}`
   );
@@ -31,9 +28,5 @@ export default async function ImageSearchPage({ searchParams }) {
     );
   }
 
-  return (
-    <Suspense fallback={<Loading />}>
-      <div>{results && <ImageSearchResults results={data} />}</div>
-    </Suspense>
-  );
+  return <ImageSearchClient results={results} />;
 }
