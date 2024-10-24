@@ -1,4 +1,5 @@
 // import localFont from "next/font/local";
+import { Suspense } from "react";
 import "./globals.css";
 import Footer from "@/components/Footer";
 
@@ -25,7 +26,9 @@ export default function RootLayout({ children }) {
       <body
         className='relative min-h-screen'
       >
+        <Suspense>
         {children}
+        </Suspense>
         <Footer/>
       </body>
     </html>

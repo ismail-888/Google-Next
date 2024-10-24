@@ -10,7 +10,7 @@ export default async function WebSearchPage({ searchParams }) {
   );
   if (!response.ok) throw new Error('Something went wrong');
   const data = await response.json();
-  console.log(data)
+  // console.log(data)
   const results = data.items;
 
 
